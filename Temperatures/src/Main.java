@@ -18,7 +18,26 @@ arrays: String months, float temp
 
 user validation
  */
+
 public class Main {
+    public static String Months(int mon) {
+        String result = switch (mon) {
+            case 1 -> "January";
+            case 2 -> "February";
+            case 3 -> "March";
+            case 4 -> "April";
+            case 5 -> "May";
+            case 6 -> "June";
+            case 7 -> "July";
+            case 8 -> "August";
+            case 9 -> "September";
+            case 10 -> "October";
+            case 11 -> "November";
+            case 12 -> "December";
+            default -> "";
+        };
+        return result;
+    }
     public static void main(String[] args) {
         String month;
         float temp = 0, high, low;
@@ -29,8 +48,10 @@ public class Main {
         System.out.println("Monthly Average Temperature Index");
 
         for (int i = 0; i < 12; i++) {
-
+            months[i] = Months(i+1);
         }
-
+        for (int i = 0; i < 12; i++) {
+            System.out.println(months[i]);
+        }
     }
 }
