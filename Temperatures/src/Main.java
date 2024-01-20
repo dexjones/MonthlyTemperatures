@@ -18,7 +18,8 @@ arrays: String months, float temp
 
 user validation
  */
-
+import java.util.Random;
+import java.text.DecimalFormat;
 public class Main {
     public static String Months(int mon) {
         String result = switch (mon) {
@@ -40,18 +41,36 @@ public class Main {
     }
     public static void main(String[] args) {
         String month;
+        final int SIZE = 12;
         float temp = 0, high, low;
-        String months[] = new String[12];
-        float temps[] = new float[12];
+        String months[] = new String[SIZE];
+        float temps[] = new float[SIZE];
         boolean isFormat = false;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         System.out.println("Monthly Average Temperature Index");
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < SIZE; i++) {
             months[i] = Months(i+1);
         }
+        for (int i = 0; i < SIZE; i++) {
+            if (i <= 1 || i == 11) { // Winter months Dec-Feb
+                temp = new Random().nextFloat(60) - 15; // random temp from -15 to 45 degrees
+            }
+            else if ( i >= 2 && i <= 4) { // Spring months
+                temp = new Random().nextFloat(80); // random temp from 0-80
+            }
+            else if (i >= 5 && i <= 7) { // Summer months
+                temp = new Random().nextFloat(45) + 60; // random temp from 60-105
+            }
+            else { // Fall months
+                temp = new Random().nextFloat(45) + 20; // random temp from 20-65
+            }
+            temp = Float.parseFloat(decimalFormat.format(temp));
+            temps[i] = temp;
+        }
         for (int i = 0; i < 12; i++) {
-            System.out.println(months[i]);
+            System.out.println(months[i] + ": " + temps[i]);
         }
     }
 }
