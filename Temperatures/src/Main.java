@@ -113,11 +113,10 @@ public class Main {
                         }
                     }
                     else if (s.equalsIgnoreCase("quit")){ // exits program if 'quit' is input
-                        System.out.println("Exiting program... Goodbye!");
                         done = true;
                     }
                 }
-
+                System.out.println("Exiting program... Goodbye!");
             }
             else { // alerts user of invalid entry
                 System.out.println("Invalid entry, please try again.");
