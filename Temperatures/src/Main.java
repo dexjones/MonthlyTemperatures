@@ -99,15 +99,15 @@ public class Main {
             if (isString(s)) { // checks user input to be specific month, 'year', or 'quit'
                 for (int i = 0; i < SIZE; i++) { // if month is entered, output month data
                     if (months[i].equalsIgnoreCase(s)) {
-                        result = months[i] + ": " + temps[i] + "\n---------------------------------------";
+                        result = months[i] + ": " + temps[i] + "\u00B0F" + "\n---------------------------------------";
                         System.out.println(result);
                     }
                     else if (s.equalsIgnoreCase("year")){ // if 'year' entered, print out all months
-                        result = months[i] + ": " + temps[i];
+                        result = months[i] + ": " + temps[i] + "\u00B0F";
                         System.out.println(result);
                         if (i == SIZE - 1) { // Last iteration print high, low, and average data
-                            result = ("---------------------------------------\n" + "Yearly High: " + high +
-                                     "\nYearly Low: " + low + "\nYearly Average: " + avg
+                            result = ("---------------------------------------\n" + "Yearly High: " + high + "\u00B0F" +
+                                     "\nYearly Low: " + low + "\u00B0F" + "\nYearly Average: " + avg + "\u00B0F"
                                      + "\n---------------------------------------");
                             System.out.println(result);
                         }
