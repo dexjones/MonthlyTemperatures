@@ -18,7 +18,7 @@ arrays: String months, float temp
 
 user validation
  */
-import java.util.Random;
+import java.util.*;
 import java.text.DecimalFormat;
 public class Main {
     public static String Months(int mon) {
@@ -39,13 +39,25 @@ public class Main {
         };
         return result;
     }
+    public static boolean isString(String s) {
+        String val = s.toLowerCase();
+        switch (val) {
+            case "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "year":
+                val = "valid";
+                break;
+            default:
+                val = "invalid";
+        }
+        return "valid".equals(val);
+    }
     public static void main(String[] args) {
-        String month;
+        Scanner scnr = new Scanner(System.in);
+        String month, s = "", result;
         final int SIZE = 12;
-        float temp = 0, high, low;
+        float temp = 0, high = -100, low = 200, avg = 0, total = 0;
         String months[] = new String[SIZE];
         float temps[] = new float[SIZE];
-        boolean isFormat = false;
+        boolean isFormat = false, done = false;
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         System.out.println("Monthly Average Temperature Index");
@@ -68,9 +80,39 @@ public class Main {
             }
             temp = Float.parseFloat(decimalFormat.format(temp));
             temps[i] = temp;
+            if (temp < low) { // tracks the low temp
+                low = temp;
+            }
+            else if (temp > high) { // tracks the high temp
+                high = temp;
+            }
+            total += temp;
         }
-        for (int i = 0; i < 12; i++) {
+        avg = total / SIZE;
+
+        while (!done) { // Allows for multiple user input and choice to continue
+            System.out.print("Enter the month for average temperature.\nOtherwise, enter 'year' for past year analytics: ");
+            s = scnr.nextLine();
+
+            if (isString(s)) { // checks user input to be specific month or 'year'
+                for (int i = 0; i < SIZE; i++) { // if month is entered, output month data
+                    if (months[i].equalsIgnoreCase(s)) {
+                        result = months[i] + ": " + temps[i];
+                        System.out.println(result);
+                    }
+
+                }
+            }
+            else{
+                for (int j = 0; j < SIZE; j++) {
+                    result = months[j] + ": " + temps[j];
+                    System.out.println(result);
+                }
+                System.out.print("Yearly High: " + high +"\nYearly Low: " + low + "\nYearly Average: " + avg);
+            }
+        }
+        /*for (int i = 0; i < 12; i++) {
             System.out.println(months[i] + ": " + temps[i]);
-        }
+        }*/
     }
 }
