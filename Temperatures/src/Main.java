@@ -116,11 +116,11 @@ public class Main {
                         done = true;
                     }
                 }
-                System.out.println("Exiting program... Goodbye!");
             }
             else { // alerts user of invalid entry
                 System.out.println("Invalid entry, please try again.");
             }
         }
+        System.out.println("Exiting program... Goodbye!");
     }
 }
